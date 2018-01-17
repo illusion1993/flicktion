@@ -1,0 +1,62 @@
+<div ng-include src="'static/app/views/header-view.html'"></div>
+
+<div class="container pageContent">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash"
+                 ng-bind-html="flash.message"></div>
+            <h2>Profile</h2>
+
+            <form name="profileForm" ng-submit="save(user_profile)" role="form">
+
+                <div class="form-group"
+                     ng-class="{ 'has-error': (profileForm.first_name.$touched && profileForm.first_name.$error.required) || errors.first_name }">
+                    <label for="first_name">
+                        First Name
+                    </label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" ng-model="user_profile.first_name" required/>
+            <span ng-show="profileForm.first_name.$touched && profileForm.first_name.$error.required && !errors.first_name">
+                First name is required
+            </span>
+            <span ng-show="errors.first_name">
+                <span ng-repeat="error in errors.first_name">
+                    {{ error }}
+                </span>
+            </span>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error': profileForm.last_name.$touched && profileForm.last_name.$error.required }">
+                    <label for="last_name">
+                        Last Name
+                    </label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" ng-model="user_profile.last_name" required/>
+            <span ng-show="profileForm.last_name.$touched && profileForm.last_name.$error.required">
+                Last name is required
+            </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" id="password" ng-model="user_profile.password" class="form-control" placeholder="Optional"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" ng-model="confirm_password" class="form-control"
+                           placeholder="Enter password again"/>
+            <span ng-show="user_profile.password != confirm_password">
+                Passwords don't match
+            </span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="profileForm.$invalid || (user_profile.password != confirm_password)" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-include src="'static/app/views/footer-view.html'"></div>

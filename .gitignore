@@ -1,0 +1,4 @@
+*.sqlite3
+migrations/
+*.pyc
+dataset/similarity.txt

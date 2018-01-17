@@ -1,0 +1,167 @@
+<div ng-include src="'static/app/views/header-view.html'"></div>
+
+<div class="container pageContent">
+    <div class="row">
+        <div class="col-md-12 widget-left">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="desc">
+                            <h2>Your Watchlist</h2>
+
+                            <p>The following are the movies that you have watched along with the ratings that you provided.</p>
+
+                            <p>You recommendations will be based on this watchlist, please rate as many movies as you can so Flicktion could provide you with
+                                best recommendations possible.</p>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-2" data-ng-repeat="movie in recommendations">
+                                <div class="movieGridBox" data-ng-class="{rated : isInWatchlist(movie.id), wished : isInWishlist(movie.id) && !isInWatchlist(movie.id)}">
+                                    <div class="overlay" data-ng-if="isInProcessing(movie.id)">
+                                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+                                    </div>
+                                    <div class="movieCard" href="#" alt="{{ movie.Title }}" title="{{ movie.Title }}">
+                                        <h4><i class="fa fa-film"></i> {{ movie.Title }}</h4>
+                                        <div class="cardInfo">
+                                            <span class="year">{{ movie.Year }}</span>
+                                            <span class="rated">{{ movie.Rated }}</span>
+                                            <span class="wishlisted">
+                                                <i class="fa" data-ng-class="{'fa-thumbs-o-up': !isInWishlist(movie.id), 'fa-thumbs-up': isInWishlist(movie.id)}"></i>
+                                            </span>
+                                        </div>
+                                        <div class="poster" style="background: url('{{ movie.Poster }}') center; background-size: cover;">
+                                            <div class="metaInfo animated flipInX">
+                                                <ul class="metaList">
+                                                    <li data-ng-if="movie.Genre">
+                                                        <span class="field">Genres: </span>
+                                                        <span class="fieldValue">{{ join(movie.Genre) }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="field">IMDB rating: </span>
+                                                        <span class="fieldValue">{{ movie.imdbRating }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="field">Actors: </span>
+                                                        <span class="fieldValue">{{ join(movie.Actors) }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="field">Languages: </span>
+                                                        <span class="fieldValue">{{ join(movie.Language) }}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movieGridRating">
+                                    <div style="display: inline-block;" star-rating data-ng-model="movie.userRating" filled="{{ ratingScoreFor(movie.id) }}" max="5"
+                                         on-rating-select="rateFunction(rating, movie.id, $index)">
+                                    </div>
+                                    <ul class="dropdownList">
+                                        <li uib-dropdown>
+                                            <a class="btn btn-default" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                               aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fa fa-th-list"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" uib-dropdown-menu>
+                                                <li><a ng-href="#/movies/{{ movie.id }}"><i class="fa fa-th"></i> View details</a></li>
+                                                <li
+                                                        data-ng-if="!isInWishlist(movie.id)"><a href="" data-ng-click="addToWishlist(movie.id, $index)"><i
+                                                        class="fa fa-thumbs-o-up"></i> Add to
+                                                    wishlist</a></li>
+                                                <li
+                                                        data-ng-if="isInWishlist(movie.id)"><a href="" data-ng-click="removeFromWishlist(movie.id, $index)"><i class="fa fa-thumbs-o-down"></i> Remove from
+                                                    wishlist</a></li>
+                                                <li role="separator" class="divider" data-ng-if="isInWatchlist(movie.id)"></li>
+                                                <li><a href="" data-ng-if="isInWatchlist(movie.id)" data-ng-click="clearRating(movie.id, $index)"><i class="fa fa-close"></i> Clear
+                                                    rating</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-md-3" data-ng-repeat="movie in recommendations">-->
+                                <!--<div class="movieGridBox" data-ng-class="{rated : isInWatchlist(movie.id), wished : isInWishlist(movie.id) && !isInWatchlist(movie.id)}">-->
+                                    <!--<div class="overlay" data-ng-if="isInProcessing(movie.id)">-->
+                                        <!--<i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>-->
+                                    <!--</div>-->
+                                    <!--<div class="movieCard" href="#" alt="{{ movie.Title }}" title="{{ movie.Title }}">-->
+                                        <!--<a href="#/"><h4><i class="fa fa-film"></i> {{ movie.Title }}</h4></a>-->
+                                        <!--<div class="cardInfo">-->
+                                            <!--<span class="year">{{ movie.Year }}</span>-->
+                                            <!--<span class="rated">{{ movie.Rated }}</span>-->
+                                            <!--<span class="wishlisted">-->
+                                                <!--<i class="fa" data-ng-class="{'fa-thumbs-o-up': !movie.inWishlist, 'fa-thumbs-up': movie.inWishlist}"></i>-->
+                                            <!--</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="poster" style="background: url('{{ movie.Poster }}') center; background-size: cover;">-->
+                                            <!--<div class="metaInfo animated flipInX">-->
+                                                <!--<ul class="metaList">-->
+                                                    <!--<li data-ng-if="movie.Genre">-->
+                                                        <!--<span class="field">Genres: </span>-->
+                                                        <!--<span class="fieldValue">{{ movie.Genre }}</span>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<span class="field">IMDB rating: </span>-->
+                                                        <!--<span class="fieldValue">{{ movie.imdbRating }}</span>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<span class="field">Actors: </span>-->
+                                                        <!--<span class="fieldValue">{{ movie.Actors }}</span>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<span class="field">Languages: </span>-->
+                                                        <!--<span class="fieldValue">{{ movie.Language }}</span>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="movieGridRating">-->
+                                    <!--<div style="display: inline-block;" star-rating data-ng-model="movie.userRating" filled="{{ ratingScoreFor(movie.id) }}" max="5"-->
+                                         <!--on-rating-select="rateFunction(rating, movie.id, $index)">-->
+                                    <!--</div>-->
+                                    <!--<ul class="dropdownList">-->
+                                        <!--<li uib-dropdown>-->
+                                            <!--<a class="btn btn-default" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+                                               <!--aria-haspopup="true"-->
+                                                <!--aria-expanded="false">-->
+                                                <!--<i class="fa fa-th-list"></i>-->
+                                            <!--</a>-->
+                                            <!--<ul class="dropdown-menu" uib-dropdown-menu>-->
+                                                <!--<li><a href="#"><i class="fa fa-th"></i> View details</a></li>-->
+                                                <!--<li-->
+                                                        <!--data-ng-if="!movie.inWishlist"><a href="" data-ng-click="addToWishlist(movie.id, $index)"><i-->
+                                                        <!--class="fa fa-thumbs-o-up"></i> Add to-->
+                                                    <!--wishlist</a></li>-->
+                                                <!--<li-->
+                                                        <!--data-ng-if="movie.inWishlist"><a href="" data-ng-click="removeFromWishlist(movie.id, $index)"><i class="fa fa-thumbs-o-down"></i> Remove from-->
+                                                    <!--wishlist</a></li>-->
+                                                <!--<li role="separator" class="divider" data-ng-if="movie.userRating != -1"></li>-->
+                                                <!--<li><a href="" data-ng-if="isInWatchlist(movie.id)" data-ng-click="clearRating(movie.id, $index)"><i class="fa fa-close"></i> Clear-->
+                                                    <!--rating</a></li>-->
+                                            <!--</ul>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <p class="text-center">
+                            <button data-ng-if="recommendationsDump.length" class="btn btn-default" href="" data-ng-click="loadMoreRecommendations()"
+                                    class="loaderLink">View more movies from your watchlist</button>
+                            <button disabled data-ng-if="!recommendationsDump.length" class="btn btn-default" href="" class="loaderLink">No more movies
+                            left in your watchlist!</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-include src="'static/app/views/footer-view.html'"></div>

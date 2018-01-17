@@ -1,0 +1,394 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+body{
+	color: #555;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 18px;
+	font-weight: 300;
+    background: #f8f8f8;
+}
+
+h1, h2, h3, h4, h5{
+	color: #336699;
+	font-weight: 300;
+}
+
+.introBox{
+	background: #336699;
+	padding: 100px 0;	
+}
+
+.introBox h1{
+	color: #fff;
+	font-size: 62px;	
+}
+
+.introBox p{
+	font-size: 24px;
+	color: #fff;
+}
+
+.introBox .introDesc{
+	margin-bottom: 30px;
+}
+
+.introBox .introLogin{
+	font-size: 18px;
+}
+
+.introBox p a{
+	display: inline-block;
+	padding: 2px 7px;
+	background: #fff;
+	color: #336699;	
+	border-radius: 10px; 
+}
+
+.navbar-default {
+    background-color: #336699;
+    border: none;
+}
+
+.navbar-default .navbar-brand {
+    color: #f8f8f8;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #d9d9d9;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navbar-default .navbar-nav>li.active>a {
+    color: #fd0;
+    background: transparent;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    color: #fd0;
+    background: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #f8f8f8;
+    background-color: #52b6df;
+}
+
+.widget-left{
+	border-right: 1px solid #f8f8f8;
+	margin-bottom: 40px;
+}
+
+.widget-right{
+	border-left: 1px solid #f8f8f8;
+	margin-bottom: 40px;
+}
+
+.widget-left .desc, .widget-right .desc{
+	margin-bottom: 30px;
+}
+
+.widget .desc p{
+	color: #888;
+}
+
+.likeCell, .dislikeCell{
+	text-align: center;	
+}
+
+.likeCell .fa, .dislikeCell .fa{
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding-top: 8px;
+	font-size: 20px;
+}
+
+.likeCell .fa:hover, .dislikeCell .fa:hover{
+	padding-top: 0;
+	padding-bottom: 7px;
+}
+
+.likeCell .fa{	
+	color: rgb(109, 206, 158);	
+}
+
+.dislikeCell .fa{
+	color: rgb(224, 103, 96);
+}
+
+a.loaderLink{
+	text-decoration: underline;
+	color: #52b6df;
+}
+
+.footer{
+	background: #336699;
+	padding: 30px 0;
+	color: #fff;
+}
+
+.movieGridBox{
+	background: #fff;
+	border: 1px solid #eee;
+	margin-bottom: 5px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.movieGridBox .overlay{
+	position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+}
+
+.movieGridBox .overlay .fa{
+	position: absolute;
+    top: 50%;
+    left: 47%;
+    font-size: 18px;
+    color: #336699;
+}
+
+.movieGridBox.rated{
+    border: 1px solid #fd0;
+}
+
+.movieGridBox.wished{
+    border: 1px solid #336699;
+}
+
+.movieGridBox h1, .movieGridBox h2, .movieGridBox h3, .movieGridBox h4, .movieGridBox h5{
+    margin: 4px 10px;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.movieGridBox .info{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.movieGridBox .poster{
+    width: 100%;
+    height: 200px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.movieGridBox .metaInfo{
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    display: none;
+    padding: 10px 5px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.movieGridBox:hover .metaInfo{
+    display: block;
+}
+
+.movieGridBox .metaInfo .metaList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.movieGridBox .metaInfo .metaList li{
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.movieGridBox .metaInfo .metaList li .field{
+    font-weight: bold;
+}
+
+.movieCard{
+    cursor: pointer;
+}
+
+.movieCard .cardInfo{
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+}
+
+.movieCard .cardInfo span {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.movieCard .cardInfo .year{
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
+.movieCard .cardInfo .rated{
+    border: 1px solid #aaa;
+    padding: 2px 10px;
+    margin: 3px 0;
+}
+
+.movieCard .cardInfo .wishlisted{
+    color: #336699;
+    font-size: 18px;
+    float: right;
+    padding: 4px 10px;
+    margin: 1px 0;
+}
+
+.movieGridRating{
+    font-size: 24px;
+    color: #336699;
+    margin-bottom: 20px;
+}
+
+.searchForm{
+	margin-bottom: 20px;
+}
+
+.movieGridBox .likeBox, .movieGridBox .dislikeBox{
+	margin-top: 10px;
+}
+
+.movieGridBox .likeBox .fa, .movieGridBox .dislikeBox .fa{
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding-top: 8px;
+	font-size: 20px;
+}
+
+.movieGridBox .likeBox .fa:hover, .movieGridBox .dislikeBox .fa:hover{
+	padding-top: 0;
+	padding-bottom: 7px;
+}
+
+.movieGridBox .likeBox .fa{
+	color: rgb(109, 206, 158);
+}
+
+.movieGridBox .dislikeBox .fa{
+	color: rgb(224, 103, 96);
+}
+
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.star-rating .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .05em .05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.star-rating .star.filled {
+    color: #fd0;
+}
+
+.readonly .star.filled {
+    color: #666;
+}
+
+ul.dropdownList{
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+ul.dropdownList>li{
+    display: inline-block;
+}
+
+.movieDetails{
+    margin-bottom: 40px;
+}
+
+.movieDetails h3{
+    font-weight: 400;
+}
+
+.movieDetails h3 ul.dropdownList{
+    float: none;
+    margin-left: 20px;
+}
+
+.movieDetails .metaTitle{
+    color: rgb(109, 206, 158);
+    font-weight: 600;
+    display: block;
+    font-size: 16px;
+}
+
+.movieDetails .metaDetail{
+    color: #333;
+    /*font-weight: 300;*/
+    display: block;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.pageContent{
+    min-height: 600px;
+}
+
+.widgetMovies{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.widgetMovies li a{
+    padding: 10px;
+    display: block;
+}
+
+.widgetMovies li a:hover{
+    background: #fff;
+}
+
+#proceedBox{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    border-top: 1px solid #f9f9f9;
+}
+
+#proceedBox p{
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: bold;
+}

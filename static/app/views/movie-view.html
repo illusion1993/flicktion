@@ -1,0 +1,75 @@
+<div ng-include src="'static/app/views/header-view.html'"></div>
+
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="movieDetails">
+            <h3>
+                <i class="fa fa-film"></i> <span>{{ movie.Title }}</span>
+                <ul class="dropdownList">
+                    <li uib-dropdown>
+                        <a class="btn btn-default" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-th-list"></i>
+                        </a>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li
+                                    data-ng-if="!isInWishlist(movie.id)"><a href="" data-ng-click="addToWishlist(movie.id, $index)"><i
+                                    class="fa fa-thumbs-o-up"></i> Add to
+                                wishlist</a></li>
+                            <li
+                                    data-ng-if="isInWishlist(movie.id)"><a href="" data-ng-click="removeFromWishlist(movie.id, $index)"><i
+                                    class="fa fa-thumbs-o-down"></i> Remove from
+                                wishlist</a></li>
+                            <li role="separator" class="divider" data-ng-if="isInWatchlist(movie.id)"></li>
+                            <li><a href="" data-ng-if="isInWatchlist(movie.id)" data-ng-click="clearRating(movie.id, $index)"><i class="fa fa-close"></i> Clear
+                                rating</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </h3>
+
+            <div class="movieGridRating">
+                <div style="display: inline-block;" star-rating data-ng-model="movie.userRating" filled="{{ ratingScoreFor(movie.id) }}" max="5"
+                     on-rating-select="rateFunction(rating, movie.id, $index)">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="poster">
+                        <img ng-src="{{ movie.Poster }}" alt=""/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <span class="metaTitle">Released</span>
+                    <span class="metaDetail">{{ movie.Released }}</span>
+
+                    <span class="metaTitle">Imdb Rating</span>
+                    <span class="metaDetail">{{ movie.imdbRating }}</span>
+
+                    <span class="metaTitle">Genre</span>
+                    <span class="metaDetail">{{ movie.Genre }}</span>
+
+                    <span class="metaTitle">Actors</span>
+                    <span class="metaDetail">{{ movie.Actors }}</span>
+
+                    <span class="metaTitle">Director</span>
+                    <span class="metaDetail">{{ movie.Director }}</span>
+
+                    <span class="metaTitle">Language</span>
+                    <span class="metaDetail">{{ movie.Language }}</span>
+
+                    <span class="metaTitle">Awards</span>
+                    <span class="metaDetail">{{ movie.Awards }}</span>
+                </div>
+                <div class="col-md-10">
+                    <span class="metaTitle">Plot</span>
+                    <span class="metaDetail">{{ movie.Plot }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include src="'static/app/views/footer-view.html'"></div>
